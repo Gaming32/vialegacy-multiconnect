@@ -1,0 +1,2 @@
+accessWidener	v1	named
+accessible	field	net/earthcomputer/multiconnect/impl/via/ViaMulticonnectTranslator	api	Lnet/earthcomputer/multiconnect/api/IMulticonnectTranslatorApi;

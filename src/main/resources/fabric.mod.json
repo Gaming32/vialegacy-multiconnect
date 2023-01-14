@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "vialegacy-multiconnect",
+  "version": "${version}",
+  "name": "ViaLegacy for Multiconnect",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/vialegacy-multiconnect/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "io.github.gaming32.vialegacymulticonnect.client.ViaLegacyMulticonnectClient"
+    ],
+    "main": [
+      "io.github.gaming32.vialegacymulticonnect.ViaLegacyMulticonnect"
+    ]
+  },
+  "mixins": [
+    "vialegacy-multiconnect.mixins.json"
+  ],
+  "accessWidener": "vialegacy-multiconnect.accessWidener",
+  "depends": {
+    "fabricloader": ">=0.14.12",
+    "minecraft": "1.19.3",
+    "multiconnect": ">=1.6-beta.24"
+  }
+}
