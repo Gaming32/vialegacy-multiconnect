@@ -9,6 +9,7 @@
     "multiconnect.MixinMulticonnectAddedRegistryEntries"
   ],
   "client": [
+    "LocalPlayerMixin",
     "MixinClientHandshakePacketListenerImpl"
   ],
   "injectors": {

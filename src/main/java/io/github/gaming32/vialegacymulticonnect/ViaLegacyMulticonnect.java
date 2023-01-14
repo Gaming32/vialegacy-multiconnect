@@ -1,6 +1,7 @@
 package io.github.gaming32.vialegacymulticonnect;
 
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
+import io.github.gaming32.vialegacymulticonnect.protocols.b1_7.Protocol_b1_7;
 import io.github.gaming32.vialegacymulticonnect.protocols.b1_8.Protocol_b1_8;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_0.Protocol_1_0;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_1.Protocol_1_1;
@@ -38,8 +39,6 @@ public class ViaLegacyMulticonnect implements ModInitializer {
     public static final ResourceLocation RANDOM_HURT_ID = new ResourceLocation(MOD_ID, "random.hurt");
     public static final SoundEvent RANDOM_HURT = SoundEvent.createVariableRangeEvent(RANDOM_HURT_ID);
 
-    private static int nextDataVersion = ConnectionMode.V1_8.getDataVersion() - 1;
-
     @Override
     public void onInitialize() {
         register("1.7.6", ProtocolVersion.v1_7_6, false, Protocol_1_7_6::new);
@@ -58,11 +57,12 @@ public class ViaLegacyMulticonnect implements ModInitializer {
         register("1.1",   LegacyProtocolVersions.r1_1, true, Protocol_1_1::new);
         register("1.0",   LegacyProtocolVersions.r1_0_0tor1_0_1, true, Protocol_1_0::new);
         register("b1.8",  LegacyProtocolVersions.b1_8tob1_8_1, true, Protocol_b1_8::new);
+        register("b1.7",  LegacyProtocolVersions.b1_7tob1_7_3, true, Protocol_b1_7::new);
     }
 
     // Use Protocol_1_7_6, so we don't accidentally reference something newer
     private static void register(String name, ProtocolVersion version, boolean isMajor, Supplier<Protocol_1_7_6> protocolSupplier) {
-        ConnectionMode.register(name, version.getVersion(), nextDataVersion--, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | (isMajor ? MAJOR_RELEASE : 0));
+        ConnectionMode.register(name, version.getVersion(), 99, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | (isMajor ? MAJOR_RELEASE : 0));
         ProtocolRegistry.register(version.getVersion(), protocolSupplier.get());
     }
 
@@ -87,5 +87,17 @@ public class ViaLegacyMulticonnect implements ModInitializer {
 
     public static boolean isEqualToOrOlder(ProtocolVersion protocol) {
         return protocolCompare(ConnectionInfo.protocolVersion, protocol.getVersion()) <= 0;
+    }
+
+    public static boolean isOlder(ProtocolVersion protocol) {
+        return protocolCompare(ConnectionInfo.protocolVersion, protocol.getVersion()) < 0;
+    }
+
+    public static boolean isEqualToOrNewer(ProtocolVersion protocol) {
+        return protocolCompare(ConnectionInfo.protocolVersion, protocol.getVersion()) >= 0;
+    }
+
+    public static boolean isNewer(ProtocolVersion protocol) {
+        return protocolCompare(ConnectionInfo.protocolVersion, protocol.getVersion()) > 0;
     }
 }

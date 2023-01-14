@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinPlayer {
     @Inject(method = "getHurtSound", at = @At("HEAD"), cancellable = true)
     private void OOF(DamageSource damageSource, CallbackInfoReturnable<SoundEvent> cir) {
-        if (ViaLegacyMulticonnect.isEqualToOrOlder(LegacyProtocolVersions.b1_8tob1_8_1)) {
+        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersions.r1_0_0tor1_0_1)) {
             cir.setReturnValue(ViaLegacyMulticonnect.RANDOM_HURT);
         }
     }

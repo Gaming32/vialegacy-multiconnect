@@ -20,7 +20,8 @@
   "mixins": [
     "vialegacy-multiconnect.mixins.json",
     "vialegacy-multiconnect.1_2.mixins.json",
-    "vialegacy-multiconnect.b1_8.mixins.json"
+    "vialegacy-multiconnect.b1_8.mixins.json",
+    "vialegacy-multiconnect.b1_7.mixins.json"
   ],
   "accessWidener": "vialegacy-multiconnect.accessWidener",
   "depends": {
