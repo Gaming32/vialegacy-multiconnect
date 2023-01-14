@@ -3,7 +3,6 @@ package io.github.gaming32.vialegacymulticonnect.mixin;
 import io.github.gaming32.vialegacymulticonnect.EncryptableConnection;
 import io.github.gaming32.vialegacymulticonnect.ViaLegacyMulticonnect;
 import io.github.gaming32.vialegacymulticonnect.ViaLegacyMulticonnectTranslator;
-import io.github.gaming32.vialegacymulticonnect.access.HasChannel;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.CipherDecoder;
@@ -19,9 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import javax.crypto.Cipher;
 
 @Mixin(Connection.class)
-public abstract class MixinConnection implements EncryptableConnection, HasChannel {
-    @Shadow public abstract void setEncryptionKey(Cipher decryptingCipher, Cipher encryptingCipher);
-
+public abstract class MixinConnection implements EncryptableConnection {
     @Shadow private Channel channel;
     @Shadow private boolean encrypted;
     private Cipher vlm$decryptingCipher;
@@ -46,10 +43,5 @@ public abstract class MixinConnection implements EncryptableConnection, HasChann
         encrypted = true;
         channel.pipeline().addBefore("via-pre-netty-decoder", "decrypt", new CipherDecoder(vlm$decryptingCipher));
         channel.pipeline().addBefore("via-pre-netty-encoder", "encrypt", new CipherEncoder(vlm$encryptingCipher));
-    }
-
-    @Override
-    public Channel getChannel() {
-        return channel;
     }
 }

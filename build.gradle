@@ -47,6 +47,8 @@ dependencies {
     runtimeOnly "org.yaml:snakeyaml:1.33"
 
     include modImplementation(files("lib/multiconnect-1.6-beta.25.jar", "lib/via-translator-1.6-beta.25.jar"))
+
+    include modImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version))
 }
 
 loom {

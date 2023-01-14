@@ -1,7 +1,7 @@
 package io.github.gaming32.vialegacymulticonnect.mixin;
 
 import io.github.gaming32.vialegacymulticonnect.ViaLegacyMulticonnectTranslator;
-import io.github.gaming32.vialegacymulticonnect.access.HasChannel;
+import net.earthcomputer.multiconnect.mixin.connect.ConnectionAccessor;
 import net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
@@ -21,7 +21,7 @@ public class MixinClientHandshakePacketListenerImpl {
     private void cancelIfNoAuthenticate(String serverHash, CallbackInfoReturnable<Component> cir) {
         //noinspection DataFlowIssue
         if (
-            !((HasChannel)connection).getChannel()
+            !((ConnectionAccessor)connection).getChannel()
                 .attr(ViaLegacyMulticonnectTranslator.VIA_USER_CONNECTION_KEY)
                 .get()
                 .get(ProtocolMetadataStorage.class)

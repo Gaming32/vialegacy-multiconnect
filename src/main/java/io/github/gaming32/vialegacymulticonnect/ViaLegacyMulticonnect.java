@@ -1,6 +1,5 @@
 package io.github.gaming32.vialegacymulticonnect;
 
-import com.mojang.logging.LogUtils;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import io.github.gaming32.vialegacymulticonnect.protocols.b1_8.Protocol_b1_8;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_0.Protocol_1_0;
@@ -22,15 +21,22 @@ import net.earthcomputer.multiconnect.connect.ConnectionMode;
 import net.earthcomputer.multiconnect.impl.ConnectionInfo;
 import net.earthcomputer.multiconnect.protocols.ProtocolRegistry;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.raphimc.vialegacy.api.LegacyProtocolVersions;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.function.Supplier;
 
 import static net.earthcomputer.multiconnect.connect.ConnectionMode.InitFlags.*;
 
 public class ViaLegacyMulticonnect implements ModInitializer {
-    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final String MOD_ID = "vialegacy-multiconnect";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+    public static final ResourceLocation RANDOM_HURT_ID = new ResourceLocation(MOD_ID, "random.hurt");
+    public static final SoundEvent RANDOM_HURT = SoundEvent.createVariableRangeEvent(RANDOM_HURT_ID);
 
     private static int nextDataVersion = ConnectionMode.V1_8.getDataVersion() - 1;
 
