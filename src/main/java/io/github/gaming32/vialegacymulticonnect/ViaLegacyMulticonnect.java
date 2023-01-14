@@ -2,6 +2,14 @@ package io.github.gaming32.vialegacymulticonnect;
 
 import com.mojang.logging.LogUtils;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_3.Protocol_1_3_1;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_4.Protocol_1_4_2;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_4.Protocol_1_4_4;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_4.Protocol_1_4_6;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_5.Protocol_1_5;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_5.Protocol_1_5_2;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_6.Protocol_1_6_1;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_6.Protocol_1_6_2;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_6.Protocol_1_6_4;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_7.Protocol_1_7_2;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_7.Protocol_1_7_6;
@@ -21,11 +29,27 @@ public class ViaLegacyMulticonnect implements ModInitializer {
     public void onInitialize() {
         ConnectionMode.register("1.7.6", ProtocolVersion.v1_7_6.getVersion(), 98, MULTICONNECT_BETA | MULTICONNECT_EXTENSION);
         ConnectionMode.register("1.7.2", ProtocolVersion.v1_7_1.getVersion(), 97, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("1.6.4", LegacyProtocolVersions.r1_6_4.getVersion(), 97, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        ConnectionMode.register("1.6.4", LegacyProtocolVersions.r1_6_4.getVersion(), 96, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
+        ConnectionMode.register("1.6.2", LegacyProtocolVersions.r1_6_2.getVersion(), 95, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
+        ConnectionMode.register("1.6.1", LegacyProtocolVersions.r1_6_1.getVersion(), 94, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        ConnectionMode.register("1.5.2", LegacyProtocolVersions.r1_5_2.getVersion(), 93, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
+        ConnectionMode.register("1.5",   LegacyProtocolVersions.r1_5tor1_5_1.getVersion(), 92, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        ConnectionMode.register("1.4.6", LegacyProtocolVersions.r1_4_6tor1_4_7.getVersion(), 91, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
+        ConnectionMode.register("1.4.4", LegacyProtocolVersions.r1_4_4tor1_4_5.getVersion(), 90, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
+        ConnectionMode.register("1.4.2", LegacyProtocolVersions.r1_4_2.getVersion(), 89, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        ConnectionMode.register("1.3.1", LegacyProtocolVersions.r1_3_1tor1_3_2.getVersion(), 88, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
 
         ProtocolRegistry.register(ProtocolVersion.v1_7_6.getVersion(), new Protocol_1_7_6());
         ProtocolRegistry.register(ProtocolVersion.v1_7_1.getVersion(), new Protocol_1_7_2());
         ProtocolRegistry.register(LegacyProtocolVersions.r1_6_4.getVersion(), new Protocol_1_6_4());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_6_2.getVersion(), new Protocol_1_6_2());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_6_1.getVersion(), new Protocol_1_6_1());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_5_2.getVersion(), new Protocol_1_5_2());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_5tor1_5_1.getVersion(), new Protocol_1_5());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_4_6tor1_4_7.getVersion(), new Protocol_1_4_6());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_4_4tor1_4_5.getVersion(), new Protocol_1_4_4());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_4_2.getVersion(), new Protocol_1_4_2());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_3_1tor1_3_2.getVersion(), new Protocol_1_3_1());
     }
 
     public static int protocolCompare(int a, int b) {
