@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.gaming32.vialegacymulticonnect.protocols.v1_2.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "MixinGameModeSwitcherScreen_GameModeIcon"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
