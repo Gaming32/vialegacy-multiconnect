@@ -2,6 +2,11 @@ package io.github.gaming32.vialegacymulticonnect;
 
 import com.mojang.logging.LogUtils;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
+import io.github.gaming32.vialegacymulticonnect.protocols.b1_8.Protocol_b1_8;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_0.Protocol_1_0;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_1.Protocol_1_1;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_2.Protocol_1_2_1;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_2.Protocol_1_2_4;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_3.Protocol_1_3_1;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_4.Protocol_1_4_2;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_4.Protocol_1_4_4;
@@ -38,6 +43,11 @@ public class ViaLegacyMulticonnect implements ModInitializer {
         ConnectionMode.register("1.4.4", LegacyProtocolVersions.r1_4_4tor1_4_5.getVersion(), 90, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
         ConnectionMode.register("1.4.2", LegacyProtocolVersions.r1_4_2.getVersion(), 89, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
         ConnectionMode.register("1.3.1", LegacyProtocolVersions.r1_3_1tor1_3_2.getVersion(), 88, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        ConnectionMode.register("1.2.4", LegacyProtocolVersions.r1_2_4tor1_2_5.getVersion(), 87, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
+        ConnectionMode.register("1.2.1", LegacyProtocolVersions.r1_2_1tor1_2_3.getVersion(), 86, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        ConnectionMode.register("1.1",   LegacyProtocolVersions.r1_1.getVersion(), 85, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        ConnectionMode.register("1.0",   LegacyProtocolVersions.r1_0_0tor1_0_1.getVersion(), 84, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        ConnectionMode.register("b1.8",  LegacyProtocolVersions.b1_8tob1_8_1.getVersion(), 84, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
 
         ProtocolRegistry.register(ProtocolVersion.v1_7_6.getVersion(), new Protocol_1_7_6());
         ProtocolRegistry.register(ProtocolVersion.v1_7_1.getVersion(), new Protocol_1_7_2());
@@ -50,6 +60,11 @@ public class ViaLegacyMulticonnect implements ModInitializer {
         ProtocolRegistry.register(LegacyProtocolVersions.r1_4_4tor1_4_5.getVersion(), new Protocol_1_4_4());
         ProtocolRegistry.register(LegacyProtocolVersions.r1_4_2.getVersion(), new Protocol_1_4_2());
         ProtocolRegistry.register(LegacyProtocolVersions.r1_3_1tor1_3_2.getVersion(), new Protocol_1_3_1());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_2_4tor1_2_5.getVersion(), new Protocol_1_2_4());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_2_1tor1_2_3.getVersion(), new Protocol_1_2_1());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_1.getVersion(), new Protocol_1_1());
+        ProtocolRegistry.register(LegacyProtocolVersions.r1_0_0tor1_0_1.getVersion(), new Protocol_1_0());
+        ProtocolRegistry.register(LegacyProtocolVersions.b1_8tob1_8_1.getVersion(), new Protocol_b1_8());
     }
 
     public static int protocolCompare(int a, int b) {

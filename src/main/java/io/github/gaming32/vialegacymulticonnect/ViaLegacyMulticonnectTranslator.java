@@ -16,6 +16,7 @@ import net.minecraft.network.Connection;
 import net.raphimc.vialegacy.api.LegacyProtocolVersions;
 import net.raphimc.vialegacy.netty.PreNettyDecoder;
 import net.raphimc.vialegacy.netty.PreNettyEncoder;
+import net.raphimc.vialegacy.protocols.release.protocol1_3_1_2to1_2_4_5.providers.OldAuthProvider;
 import net.raphimc.vialegacy.protocols.release.protocol1_7_2_5to1_6_4.baseprotocols.PreNettyBaseProtocol;
 import net.raphimc.vialegacy.protocols.release.protocol1_7_2_5to1_6_4.providers.EncryptionProvider;
 import net.raphimc.vialegacy.protocols.release.protocol1_8to1_7_6_10.providers.GameProfileFetcher;
@@ -53,6 +54,7 @@ public class ViaLegacyMulticonnectTranslator extends ViaMulticonnectTranslator {
 
         Via.getManager().getProviders().use(EncryptionProvider.class, new MulticonnectEncryptionProvider());
         Via.getManager().getProviders().use(GameProfileFetcher.class, new MulticonnectGameProfileFetcher());
+        Via.getManager().getProviders().use(OldAuthProvider.class, new MulticonnectOldAuthProvider());
     }
 
     @Override
