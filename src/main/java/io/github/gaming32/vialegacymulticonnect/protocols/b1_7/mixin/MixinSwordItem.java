@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SwordItem.class)
+@SuppressWarnings({"UnresolvedMixinReference", "MixinAnnotationTarget"})
 public class MixinSwordItem extends TieredItem {
     public MixinSwordItem(Tier tier, Properties properties) {
         super(tier, properties);
