@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ViaBackwardsPlatformImpl implements ViaBackwardsPlatform {
     public ViaBackwardsPlatformImpl() {
-        init(Via.getPlatform().getDataFolder());
+        init(getDataFolder());
     }
 
     @Override
@@ -27,6 +27,6 @@ public class ViaBackwardsPlatformImpl implements ViaBackwardsPlatform {
 
     @Override
     public File getDataFolder() {
-        return new File(Via.getPlatform().getDataFolder(), "viabackwards.yml");
+        return Via.getPlatform().getDataFolder();
     }
 }
