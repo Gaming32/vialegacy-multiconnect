@@ -25,46 +25,39 @@ import net.fabricmc.api.ModInitializer;
 import net.raphimc.vialegacy.api.LegacyProtocolVersions;
 import org.slf4j.Logger;
 
+import java.util.function.Supplier;
+
 import static net.earthcomputer.multiconnect.connect.ConnectionMode.InitFlags.*;
 
 public class ViaLegacyMulticonnect implements ModInitializer {
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    private static int nextDataVersion = ConnectionMode.V1_8.getDataVersion() - 1;
+
     @Override
     public void onInitialize() {
-        ConnectionMode.register("1.7.6", ProtocolVersion.v1_7_6.getVersion(), 98, MULTICONNECT_BETA | MULTICONNECT_EXTENSION);
-        ConnectionMode.register("1.7.2", ProtocolVersion.v1_7_1.getVersion(), 97, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("1.6.4", LegacyProtocolVersions.r1_6_4.getVersion(), 96, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
-        ConnectionMode.register("1.6.2", LegacyProtocolVersions.r1_6_2.getVersion(), 95, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
-        ConnectionMode.register("1.6.1", LegacyProtocolVersions.r1_6_1.getVersion(), 94, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("1.5.2", LegacyProtocolVersions.r1_5_2.getVersion(), 93, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
-        ConnectionMode.register("1.5",   LegacyProtocolVersions.r1_5tor1_5_1.getVersion(), 92, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("1.4.6", LegacyProtocolVersions.r1_4_6tor1_4_7.getVersion(), 91, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
-        ConnectionMode.register("1.4.4", LegacyProtocolVersions.r1_4_4tor1_4_5.getVersion(), 90, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
-        ConnectionMode.register("1.4.2", LegacyProtocolVersions.r1_4_2.getVersion(), 89, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("1.3.1", LegacyProtocolVersions.r1_3_1tor1_3_2.getVersion(), 88, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("1.2.4", LegacyProtocolVersions.r1_2_4tor1_2_5.getVersion(), 87, MULTICONNECT_EXTENSION | MULTICONNECT_BETA);
-        ConnectionMode.register("1.2.1", LegacyProtocolVersions.r1_2_1tor1_2_3.getVersion(), 86, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("1.1",   LegacyProtocolVersions.r1_1.getVersion(), 85, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("1.0",   LegacyProtocolVersions.r1_0_0tor1_0_1.getVersion(), 84, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
-        ConnectionMode.register("b1.8",  LegacyProtocolVersions.b1_8tob1_8_1.getVersion(), 84, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | MAJOR_RELEASE);
+        register("1.7.6", ProtocolVersion.v1_7_6, false, Protocol_1_7_6::new);
+        register("1.7.2", ProtocolVersion.v1_7_1, true, Protocol_1_7_2::new);
+        register("1.6.4", LegacyProtocolVersions.r1_6_4, false, Protocol_1_6_4::new);
+        register("1.6.2", LegacyProtocolVersions.r1_6_2, false, Protocol_1_6_2::new);
+        register("1.6.1", LegacyProtocolVersions.r1_6_1, true, Protocol_1_6_1::new);
+        register("1.5.2", LegacyProtocolVersions.r1_5_2, false, Protocol_1_5_2::new);
+        register("1.5",   LegacyProtocolVersions.r1_5tor1_5_1, true, Protocol_1_5::new);
+        register("1.4.6", LegacyProtocolVersions.r1_4_6tor1_4_7, false, Protocol_1_4_6::new);
+        register("1.4.4", LegacyProtocolVersions.r1_4_4tor1_4_5, false, Protocol_1_4_4::new);
+        register("1.4.2", LegacyProtocolVersions.r1_4_2, true, Protocol_1_4_2::new);
+        register("1.3.1", LegacyProtocolVersions.r1_3_1tor1_3_2, true, Protocol_1_3_1::new);
+        register("1.2.4", LegacyProtocolVersions.r1_2_4tor1_2_5, false, Protocol_1_2_4::new);
+        register("1.2.1", LegacyProtocolVersions.r1_2_1tor1_2_3, true, Protocol_1_2_1::new);
+        register("1.1",   LegacyProtocolVersions.r1_1, true, Protocol_1_1::new);
+        register("1.0",   LegacyProtocolVersions.r1_0_0tor1_0_1, true, Protocol_1_0::new);
+        register("b1.8",  LegacyProtocolVersions.b1_8tob1_8_1, true, Protocol_b1_8::new);
+    }
 
-        ProtocolRegistry.register(ProtocolVersion.v1_7_6.getVersion(), new Protocol_1_7_6());
-        ProtocolRegistry.register(ProtocolVersion.v1_7_1.getVersion(), new Protocol_1_7_2());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_6_4.getVersion(), new Protocol_1_6_4());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_6_2.getVersion(), new Protocol_1_6_2());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_6_1.getVersion(), new Protocol_1_6_1());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_5_2.getVersion(), new Protocol_1_5_2());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_5tor1_5_1.getVersion(), new Protocol_1_5());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_4_6tor1_4_7.getVersion(), new Protocol_1_4_6());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_4_4tor1_4_5.getVersion(), new Protocol_1_4_4());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_4_2.getVersion(), new Protocol_1_4_2());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_3_1tor1_3_2.getVersion(), new Protocol_1_3_1());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_2_4tor1_2_5.getVersion(), new Protocol_1_2_4());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_2_1tor1_2_3.getVersion(), new Protocol_1_2_1());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_1.getVersion(), new Protocol_1_1());
-        ProtocolRegistry.register(LegacyProtocolVersions.r1_0_0tor1_0_1.getVersion(), new Protocol_1_0());
-        ProtocolRegistry.register(LegacyProtocolVersions.b1_8tob1_8_1.getVersion(), new Protocol_b1_8());
+    // Use Protocol_1_7_6, so we don't accidentally reference something newer
+    private static void register(String name, ProtocolVersion version, boolean isMajor, Supplier<Protocol_1_7_6> protocolSupplier) {
+        ConnectionMode.register(name, version.getVersion(), nextDataVersion--, MULTICONNECT_EXTENSION | MULTICONNECT_BETA | (isMajor ? MAJOR_RELEASE : 0));
+        ProtocolRegistry.register(version.getVersion(), protocolSupplier.get());
     }
 
     public static int protocolCompare(int a, int b) {
