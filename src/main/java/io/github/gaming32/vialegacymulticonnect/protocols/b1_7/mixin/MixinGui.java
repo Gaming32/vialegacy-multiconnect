@@ -5,7 +5,7 @@ import io.github.gaming32.vialegacymulticonnect.ViaLegacyMulticonnect;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PlayerRideableJumping;
-import net.raphimc.vialegacy.api.LegacyProtocolVersions;
+import net.raphimc.vialegacy.api.LegacyProtocolVersion;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,21 +22,21 @@ public abstract class MixinGui {
 
     @Inject(method = "renderVehicleHealth", at = @At("HEAD"), cancellable = true)
     private void dontRenderVehicleHealth(PoseStack poseStack, CallbackInfo ci) {
-        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersions.b1_8tob1_8_1)) {
+        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersion.b1_8tob1_8_1)) {
             ci.cancel();
         }
     }
 
     @Inject(method = "renderJumpMeter", at = @At("HEAD"), cancellable = true)
     private void dontRenderJumpMeter(PlayerRideableJumping playerRideableJumping, PoseStack poseStack, int i, CallbackInfo ci) {
-        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersions.b1_8tob1_8_1)) {
+        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersion.b1_8tob1_8_1)) {
             ci.cancel();
         }
     }
 
     @Inject(method = "renderExperienceBar", at = @At("HEAD"), cancellable = true)
     private void dontRenderExperienceBar(PoseStack poseStack, int xPos, CallbackInfo ci) {
-        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersions.b1_8tob1_8_1)) {
+        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersion.b1_8tob1_8_1)) {
             ci.cancel();
         }
     }
@@ -50,7 +50,7 @@ public abstract class MixinGui {
         )
     )
     private int moveHealthDown(Gui instance) {
-        if (ViaLegacyMulticonnect.isNewer(LegacyProtocolVersions.b1_7tob1_7_3)) {
+        if (ViaLegacyMulticonnect.isNewer(LegacyProtocolVersion.b1_7tob1_7_3)) {
             return screenHeight;
         }
         return screenHeight + 6;
@@ -76,7 +76,7 @@ public abstract class MixinGui {
         index = 1
     )
     private int moveArmor(int old) {
-        if (ViaLegacyMulticonnect.isNewer(LegacyProtocolVersions.b1_7tob1_7_3)) {
+        if (ViaLegacyMulticonnect.isNewer(LegacyProtocolVersion.b1_7tob1_7_3)) {
             return old;
         }
         return screenWidth - old - 9;
@@ -102,7 +102,7 @@ public abstract class MixinGui {
         index = 2
     )
     private int moveArmorDown(int old) {
-        if (ViaLegacyMulticonnect.isNewer(LegacyProtocolVersions.b1_7tob1_7_3)) {
+        if (ViaLegacyMulticonnect.isNewer(LegacyProtocolVersion.b1_7tob1_7_3)) {
             return old;
         }
         return screenHeight - 39 + 6;
@@ -117,7 +117,7 @@ public abstract class MixinGui {
     )
     private int dontRenderHunger(Gui instance, LivingEntity mountEntity) {
         // Hunger only renders when this returns 0
-        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersions.b1_8tob1_8_1)) {
+        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersion.b1_8tob1_8_1)) {
             return 1;
         }
         return getVehicleMaxHearts(mountEntity);
@@ -143,7 +143,7 @@ public abstract class MixinGui {
         index = 1
     )
     private int moveAir(int old) {
-        if (ViaLegacyMulticonnect.isNewer(LegacyProtocolVersions.b1_7tob1_7_3)) {
+        if (ViaLegacyMulticonnect.isNewer(LegacyProtocolVersion.b1_7tob1_7_3)) {
             return old;
         }
         return screenWidth - old - 9;

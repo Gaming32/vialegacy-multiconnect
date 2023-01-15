@@ -8,7 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.CipherDecoder;
 import net.minecraft.network.CipherEncoder;
 import net.minecraft.network.Connection;
-import net.raphimc.vialegacy.api.LegacyProtocolVersions;
+import net.raphimc.vialegacy.api.LegacyProtocolVersion;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,7 +26,7 @@ public abstract class MixinConnection implements EncryptableConnection {
 
     @Inject(method = "setEncryptionKey", at = @At("HEAD"), cancellable = true)
     private void storeEncryptionKey(Cipher decryptingCipher, Cipher encryptingCipher, CallbackInfo ci) {
-        if (ViaLegacyMulticonnect.isEqualToOrOlder(LegacyProtocolVersions.r1_6_4)) {
+        if (ViaLegacyMulticonnect.isEqualToOrOlder(LegacyProtocolVersion.r1_6_4)) {
             ci.cancel();
             vlm$decryptingCipher = decryptingCipher;
             vlm$encryptingCipher = encryptingCipher;

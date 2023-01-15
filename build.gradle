@@ -43,7 +43,7 @@ dependencies {
 
     implementation "com.viaversion:viaversion:4.5.2-SNAPSHOT"
     include implementation("com.viaversion:viabackwards-common:4.5.2-SNAPSHOT")
-    include implementation("net.raphimc:ViaLegacy:2.1.0")
+    include implementation("net.raphimc:ViaLegacy:2.2.1")
     runtimeOnly "org.yaml:snakeyaml:1.33"
 
     include modImplementation(files("lib/multiconnect-1.6-beta.25.jar", "lib/via-translator-1.6-beta.25.jar"))

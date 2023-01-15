@@ -13,7 +13,7 @@ import net.earthcomputer.multiconnect.impl.via.MulticonnectLoader;
 import net.earthcomputer.multiconnect.impl.via.MulticonnectPlatform;
 import net.earthcomputer.multiconnect.impl.via.ViaMulticonnectTranslator;
 import net.minecraft.network.Connection;
-import net.raphimc.vialegacy.api.LegacyProtocolVersions;
+import net.raphimc.vialegacy.api.LegacyProtocolVersion;
 import net.raphimc.vialegacy.netty.PreNettyDecoder;
 import net.raphimc.vialegacy.netty.PreNettyEncoder;
 import net.raphimc.vialegacy.protocols.release.protocol1_3_1_2to1_2_4_5.providers.OldAuthProvider;
@@ -61,7 +61,7 @@ public class ViaLegacyMulticonnectTranslator extends ViaMulticonnectTranslator {
     public void inject(Channel channel) {
         super.inject(channel);
 
-        if (ViaLegacyMulticonnect.isEqualToOrOlder(LegacyProtocolVersions.r1_6_4)) {
+        if (ViaLegacyMulticonnect.isEqualToOrOlder(LegacyProtocolVersion.r1_6_4)) {
             final UserConnection user = channel.attr(VIA_USER_CONNECTION_KEY).get();
             user.getProtocolInfo().getPipeline().add(PreNettyBaseProtocol.INSTANCE);
             channel.pipeline().addBefore("prepender", "via-pre-netty-encoder", new PreNettyEncoder(user));
