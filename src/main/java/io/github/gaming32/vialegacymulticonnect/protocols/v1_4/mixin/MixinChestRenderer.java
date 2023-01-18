@@ -20,7 +20,8 @@ public class MixinChestRenderer<T extends BlockEntity & LidBlockEntity> {
         cancellable = true
     )
     private void dontRender(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, CallbackInfo ci) {
-        if (ViaLegacyMulticonnect.isOlder(LegacyProtocolVersion.r1_4_4tor1_4_5)) {
+        if (partialTick != 0 && ViaLegacyMulticonnect.isOlder(LegacyProtocolVersion.b1_8tob1_8_1)) {
+            // partialTick == 0 when rendering it as an item
             ci.cancel();
         }
     }
