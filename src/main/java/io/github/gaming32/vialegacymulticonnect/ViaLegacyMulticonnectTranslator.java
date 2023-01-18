@@ -43,7 +43,6 @@ public class ViaLegacyMulticonnectTranslator extends ViaMulticonnectTranslator {
         Via.init(manager);
         MappingDataLoader.enableMappingsCache();
 
-        Via.getManager().addEnableListener(ViaBackwardsPlatformImpl::new);
         Via.getManager().addEnableListener(ViaLegacyPlatformImpl::new);
 
         manager.init();
