@@ -1,6 +1,7 @@
 package io.github.gaming32.vialegacymulticonnect;
 
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
+import io.github.gaming32.vialegacymulticonnect.protocols.v1_4.Protocol_1_4_2;
 import net.earthcomputer.multiconnect.api.CustomProtocolBuilder;
 import net.earthcomputer.multiconnect.api.MultiConnectAPI;
 import net.earthcomputer.multiconnect.api.ProtocolBehavior;
@@ -33,7 +34,7 @@ public class ViaLegacyMulticonnect implements ModInitializer {
         register("1.5", LegacyProtocolVersion.r1_5tor1_5_1, true, null, null);
         register("1.4.6", LegacyProtocolVersion.r1_4_6tor1_4_7, false, null, null);
         register("1.4.4", LegacyProtocolVersion.r1_4_4tor1_4_5, false, null, null);
-        register("1.4.2", LegacyProtocolVersion.r1_4_2, true, null, "1.4");
+        register("1.4.2", LegacyProtocolVersion.r1_4_2, true, Protocol_1_4_2::new, "1.4");
         register("1.3.1", LegacyProtocolVersion.r1_3_1tor1_3_2, true, null, "1.3");
         register("1.2.4", LegacyProtocolVersion.r1_2_4tor1_2_5, false, null, null);
         register("1.2.1", LegacyProtocolVersion.r1_2_1tor1_2_3, true, null, "1.2");
@@ -47,7 +48,7 @@ public class ViaLegacyMulticonnect implements ModInitializer {
         register("b1.3", LegacyProtocolVersion.b1_3tob1_3_1, true, null, null);
         register("b1.2", LegacyProtocolVersion.b1_2_0tob1_2_2, true, null, null);
         register("b1.1_02", LegacyProtocolVersion.b1_1_2, true, null, null);
-        register("b1.0/b1.1", LegacyProtocolVersion.b1_0tob1_1_1, true, null, null);
+        register("b1.0", LegacyProtocolVersion.b1_0tob1_1_1, true, null, null);
     }
 
     // Use Protocol_1_7_6, so we don't accidentally reference something newer

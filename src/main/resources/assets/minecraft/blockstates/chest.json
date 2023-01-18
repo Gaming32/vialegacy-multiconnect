@@ -1,0 +1,55 @@
+{
+  "variants": {
+    "type=single": {
+      "model": "vialegacy-multiconnect:block/chest_single"
+    },
+    "type=left,facing=south": {
+      "model": "vialegacy-multiconnect:block/chest_right",
+      "rotation": {
+        "y": -90
+      }
+    },
+    "type=left,facing=east": {
+      "model": "vialegacy-multiconnect:block/chest_right",
+      "rotation": {
+        "y": -90
+      }
+    },
+    "type=left,facing=north": {
+      "model": "vialegacy-multiconnect:block/chest_right",
+      "rotation": {
+        "y": 180
+      }
+    },
+    "type=left,facing=west": {
+      "model": "vialegacy-multiconnect:block/chest_right",
+      "rotation": {
+        "y": 90
+      }
+    },
+    "type=right,facing=south": {
+      "model": "vialegacy-multiconnect:block/chest_left",
+      "rotation": {
+        "y": -90
+      }
+    },
+    "type=right,facing=east": {
+      "model": "vialegacy-multiconnect:block/chest_left",
+      "rotation": {
+        "y": -90
+      }
+    },
+    "type=right,facing=north": {
+      "model": "vialegacy-multiconnect:block/chest_left",
+      "rotation": {
+        "y": 180
+      }
+    },
+    "type=right,facing=west": {
+      "model": "vialegacy-multiconnect:block/chest_left",
+      "rotation": {
+        "y": 90
+      }
+    }
+  }
+}

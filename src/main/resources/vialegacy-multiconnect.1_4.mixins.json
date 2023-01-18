@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.gaming32.vialegacymulticonnect.protocols.v1_4.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinChestBlock"
+  ],
+  "client": [
+    "MixinChestRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
