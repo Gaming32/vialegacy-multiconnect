@@ -1,6 +1,7 @@
 package io.github.gaming32.vialegacymulticonnect;
 
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
+import io.github.gaming32.vialegacymulticonnect.protocols.b1_8.Protocol_b1_8;
 import io.github.gaming32.vialegacymulticonnect.protocols.v1_4.Protocol_1_4_2;
 import net.earthcomputer.multiconnect.api.CustomProtocolBuilder;
 import net.earthcomputer.multiconnect.api.MultiConnectAPI;
@@ -40,7 +41,7 @@ public class ViaLegacyMulticonnect implements ModInitializer {
         register("1.2.1", LegacyProtocolVersion.r1_2_1tor1_2_3, true, null, "1.2");
         register("1.1", LegacyProtocolVersion.r1_1, true, null, null);
         register("1.0", LegacyProtocolVersion.r1_0_0tor1_0_1, true, null, null);
-        register("b1.8", LegacyProtocolVersion.b1_8tob1_8_1, true, null, null);
+        register("b1.8", LegacyProtocolVersion.b1_8tob1_8_1, true, Protocol_b1_8::new, null);
         register("b1.7", LegacyProtocolVersion.b1_7tob1_7_3, true, null, null);
         register("b1.6", LegacyProtocolVersion.b1_6tob1_6_6, true, null, null);
         register("b1.5", LegacyProtocolVersion.b1_5tob1_5_2, true, null, null);
